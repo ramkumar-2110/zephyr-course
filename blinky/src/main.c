@@ -9,10 +9,11 @@
 #include <zephyr/drivers/gpio.h>
 
 /* 1000 msec = 1 sec */
-#define SLEEP_TIME_MS   1000
+//#define SLEEP_TIME_MS   1000
 
 /* The devicetree node identifier for the "led0" alias. */
-#define LED0_NODE DT_ALIAS(led0)
+//#define LED0_NODE DT_ALIAS(led0)
+#define LED0_NODE DT_ALIAS(app_led0)
 
 /*
  * A build error on this line means your board is unsupported.
@@ -42,7 +43,7 @@ int main(void)
 
 		led_state = !led_state;
 		printf("LED state: %s\n", led_state ? "ON" : "OFF");
-		k_msleep(SLEEP_TIME_MS);
+		k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
 	}
 	return 0;
 }
